@@ -33,7 +33,7 @@ class FengPaiEnum(Enum):
 
 class SanYuanPaiEnum(Enum):
     # 白板
-    BAI_BAN = " "
+    BAI_BAN = "白"
     # 緑發
     LU_FA = "發"
     # 紅中
@@ -48,3 +48,6 @@ class Pai:
     @abstractmethod
     def get_character(self) -> List[str]:
         pass
+
+    def __str__(self):
+        return "".join(self.get_character())
