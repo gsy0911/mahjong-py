@@ -17,7 +17,7 @@ def get_version(init_file_path):
 
 # get __version__ from __init__.py
 init = os.path.join(
-    os.path.dirname(__file__), '{your_module}', '__init__.py'
+    os.path.dirname(__file__), 'mahjong', '__init__.py'
 )
 VERSION = get_version(init_file_path=init)
 
@@ -26,23 +26,21 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-    name="{your_module}",
+    name="mahjong-py",
     version=VERSION,
-    author="{your_name}",
-    author_email="{your_email}",
-    description="{description}",
+    author="gsy0911",
+    author_email="yoshiki0911@gmail.com",
+    description="mahjong",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="{github_account_etc}",
+    url="https://github.com/gsy0911/mahjong-py",
     packages=setuptools.find_packages(),
     install_requires=[
-        "some",
-        "package"
+        ""
     ],
     license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Development Status :: 3 - Alpha",
