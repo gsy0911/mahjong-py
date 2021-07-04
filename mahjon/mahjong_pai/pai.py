@@ -2,7 +2,9 @@
 牌: pai
 """
 
-from enum import Enum
+from abc import abstractmethod
+from enum import Enum, auto
+from typing import List
 
 
 class PaiEnum(Enum):
@@ -20,25 +22,29 @@ class ZiPaiEnum(Enum):
 
 class FengPaiEnum(Enum):
     # 東
-    DONG = auto()
+    DONG = "東"
     # 南
-    NAN = auto()
+    NAN = "南"
     # 西
-    XI = auto()
+    XI = "西"
     # 北
-    BEI = auto()
+    BEI = "北"
 
 
 class SanYuanPaiEnum(Enum):
     # 白板
-    BAI_BAN = auto()
+    BAI_BAN = " "
     # 緑發
-    LU_FA = auto()
+    LU_FA = "發"
     # 紅中
-    HONG_ZHONG = auto()
+    HONG_ZHONG = "中"
 
 
 class Pai:
 
     def __init__(self, pai_enum: PaiEnum):
         self.pai_enum = pai_enum
+
+    @abstractmethod
+    def get_character(self) -> List[str]:
+        pass
