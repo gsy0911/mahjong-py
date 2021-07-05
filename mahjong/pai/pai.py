@@ -44,6 +44,7 @@ class Pai:
 
     def __init__(self, pai_enum: PaiEnum):
         self.pai_enum = pai_enum
+        self.priority = 0
 
     @abstractmethod
     def get_character(self) -> List[str]:

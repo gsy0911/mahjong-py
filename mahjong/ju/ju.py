@@ -6,6 +6,7 @@ from typing import List, Optional
 
 from mahjong.pai import Pai, WanZi, SuoZi, TongZi, FengPai, SanYuanPai, FengPaiEnum, SanYuanPaiEnum
 from .bi_pai import Zhuang, BiPai
+from .pei_pai import PeiPai
 
 
 class Ju:
@@ -49,8 +50,13 @@ class Ju:
             bi_pai_bei=self.bi_pai_bei)
 
         # 配牌: pei pai
-        self.pei_pai_tong, self.pei_pai_nan, self.pei_pai_xi, self.pei_pai_bei, self.rest_pai = \
+        pei_pai_tong, pei_pai_nan, pei_pai_xi, pei_pai_bei, self.rest_pai = \
             self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
+
+        self.pei_pai_tong = PeiPai(initial_pei_pai=pei_pai_tong)
+        self.pei_pai_nan = PeiPai(initial_pei_pai=pei_pai_nan)
+        self.pei_pai_xi = PeiPai(initial_pei_pai=pei_pai_xi)
+        self.pei_pai_bei = PeiPai(initial_pei_pai=pei_pai_bei)
 
     @staticmethod
     def xi_pai() -> List[Pai]:
@@ -156,7 +162,7 @@ class Ju:
                 pei_pai_tong.append(fixed_bi_pai[i].upper_pai)
                 rest_fixed_bi_pai.append(fixed_bi_pai[i].lower_pai)
 
-        for zhuang in fixed_bi_pai[26:]:
+        for zhuang in fixed_bi_pai[27:]:
             rest_fixed_bi_pai.extend(zhuang.get_pai())
 
         return pei_pai_tong, pei_pai_nan, pei_pai_xi, pei_pai_bei, rest_fixed_bi_pai
