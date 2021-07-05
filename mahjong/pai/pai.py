@@ -48,7 +48,12 @@ class Pai:
 
     @abstractmethod
     def get_character(self) -> List[str]:
-        pass
+        raise NotImplementedError
+
+    @staticmethod
+    @abstractmethod
+    def of(inputs: str):
+        raise NotImplementedError
 
     def __str__(self):
         return "".join(self.get_character())
