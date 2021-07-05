@@ -14,6 +14,9 @@ class Zhuang:
         self.upper_pai = upper_pai
         self.lower_pai = lower_pai
 
+    def get_pai(self) -> List[Pai]:
+        return [self.upper_pai, self.lower_pai]
+
     def __str__(self):
         return f"upper: {str(self.upper_pai)}, lower: {str(self.lower_pai)}"
 

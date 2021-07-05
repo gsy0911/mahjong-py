@@ -48,6 +48,10 @@ class Ju:
             bi_pai_xi=self.bi_pai_xi,
             bi_pai_bei=self.bi_pai_bei)
 
+        # 配牌: pei pai
+        self.pei_pai_tong, self.pei_pai_nan, self.pei_pai_xi, self.pei_pai_bei, self.rest_pai = \
+            self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
+
     @staticmethod
     def xi_pai() -> List[Pai]:
         all_pai = []
@@ -117,3 +121,42 @@ class Ju:
             fixed_bi_pai.extend(bi_pai_bei[:dice_sum])
 
         return fixed_bi_pai[-7:], fixed_bi_pai[:-7]
+
+    @staticmethod
+    def get_initial_pei_pai_and_rest_pai(fixed_bi_pai: List[Zhuang]) -> (List[Pai], List[Pai], List[Pai], List[Pai], List[Pai]):
+        """
+
+        Args:
+            fixed_bi_pai:
+
+        Returns: tong, nan, xi, bei, rest_fixed_bi_pai
+        """
+
+        pei_pai_tong = []
+        pei_pai_nan = []
+        pei_pai_xi = []
+        pei_pai_bei = []
+        rest_fixed_bi_pai = []
+        for i in range(8 * 3 + 3):
+            if i in [0, 1, 8, 9, 16, 17]:
+                pei_pai_tong.extend(fixed_bi_pai[i].get_pai())
+            elif i in [2, 3, 10, 11, 18, 19]:
+                pei_pai_nan.extend(fixed_bi_pai[i].get_pai())
+            elif i in [4, 5, 12, 13, 20, 21]:
+                pei_pai_xi.extend(fixed_bi_pai[i].get_pai())
+            elif i in [6, 7, 14, 15, 22, 23]:
+                pei_pai_bei.extend(fixed_bi_pai[i].get_pai())
+            elif i == 24:
+                pei_pai_tong.append(fixed_bi_pai[i].upper_pai)
+                pei_pai_nan.append(fixed_bi_pai[i].lower_pai)
+            elif i == 25:
+                pei_pai_xi.append(fixed_bi_pai[i].upper_pai)
+                pei_pai_bei.append(fixed_bi_pai[i].lower_pai)
+            elif i == 26:
+                pei_pai_tong.append(fixed_bi_pai[i].upper_pai)
+                rest_fixed_bi_pai.append(fixed_bi_pai[i].lower_pai)
+
+        for zhuang in fixed_bi_pai[26:]:
+            rest_fixed_bi_pai.extend(zhuang.get_pai())
+
+        return pei_pai_tong, pei_pai_nan, pei_pai_xi, pei_pai_bei, rest_fixed_bi_pai
