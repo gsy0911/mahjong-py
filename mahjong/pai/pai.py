@@ -57,3 +57,17 @@ class Pai:
 
     def __str__(self):
         return "".join(self.get_character())
+
+    def is_shu_pai(self) -> bool:
+        return self.pai_enum == PaiEnum.SHU_PAI
+
+    def is_zi_pai(self) -> bool:
+        return self.pai_enum == PaiEnum.ZI_PAI
+
+    @abstractmethod
+    def check_shu_pai_number(self, number: int) -> bool:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def check_zi_pai_char(self, char: str) -> bool:
+        raise NotImplementedError()

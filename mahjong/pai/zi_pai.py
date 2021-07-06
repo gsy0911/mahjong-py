@@ -18,6 +18,12 @@ class ZiPai(Pai):
     def of(inputs: str) -> List[Pai]:
         pass
 
+    def check_shu_pai_number(self, number: int) -> bool:
+        return False
+
+    def check_zi_pai_char(self, char: str) -> bool:
+        return False
+
 
 class FengPai(ZiPai):
 
