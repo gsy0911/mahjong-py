@@ -22,3 +22,9 @@ class Hand:
     @abstractmethod
     def is_yi_xian_ting(self) -> bool:
         raise NotImplementedError()
+
+    def decode_shun_zi(self):
+        """
+        順子
+
+        """
