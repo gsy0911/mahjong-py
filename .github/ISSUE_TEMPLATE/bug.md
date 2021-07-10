@@ -1,5 +1,5 @@
 ---
-name: Bug Report
+name: :bug: Bug Report
 about: report a bug
 title: bug-name
 labels: bug
