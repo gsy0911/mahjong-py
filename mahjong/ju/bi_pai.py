@@ -10,6 +10,7 @@ class Zhuang:
     """
     幢
     """
+
     def __init__(self, upper_pai: Pai, lower_pai: Pai):
         self.upper_pai = upper_pai
         self.lower_pai = lower_pai
@@ -30,4 +31,6 @@ class BiPai:
         self.zhuang_list = zhuang_list
 
     def __str__(self):
-        return "\n".join([f"- {idx+1}: {str(zhuang)}" for idx, zhuang in enumerate(self.zhuang_list)])
+        return "\n".join(
+            [f"- {idx+1}: {str(zhuang)}" for idx, zhuang in enumerate(self.zhuang_list)]
+        )

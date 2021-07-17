@@ -14,14 +14,18 @@ class PeiPai:
         self.pei_pai: List[Pai] = initial_pei_pai
 
     def __str__(self):
-        return "|".join([str(pai) for pai in sorted(self.pei_pai, key=lambda pai: pai.priority)])
+        return "|".join(
+            [str(pai) for pai in sorted(self.pei_pai, key=lambda pai: pai.priority)]
+        )
 
     @staticmethod
-    def of(wang_zi: Optional[str] = None,
-           tong_zi: Optional[str] = None,
-           suo_zi: Optional[str] = None,
-           feng_pai: Optional[str] = None,
-           san_yuan_pai: Optional[str] = None):
+    def of(
+        wang_zi: Optional[str] = None,
+        tong_zi: Optional[str] = None,
+        suo_zi: Optional[str] = None,
+        feng_pai: Optional[str] = None,
+        san_yuan_pai: Optional[str] = None,
+    ):
         pei_pai = []
         if wang_zi:
             pei_pai.extend(WanZi.of(wang_zi))

@@ -4,7 +4,16 @@
 import random
 from typing import List, Optional
 
-from mahjong.pai import Pai, WanZi, SuoZi, TongZi, FengPai, SanYuanPai, FengPaiEnum, SanYuanPaiEnum
+from mahjong.pai import (
+    Pai,
+    WanZi,
+    SuoZi,
+    TongZi,
+    FengPai,
+    SanYuanPai,
+    FengPaiEnum,
+    SanYuanPaiEnum,
+)
 from .bi_pai import Zhuang, BiPai
 from .pei_pai import PeiPai
 
@@ -47,11 +56,17 @@ class Ju:
             bi_pai_dong=self.bi_pai_dong,
             bi_pai_nan=self.bi_pai_nan,
             bi_pai_xi=self.bi_pai_xi,
-            bi_pai_bei=self.bi_pai_bei)
+            bi_pai_bei=self.bi_pai_bei,
+        )
 
         # 配牌: pei pai
-        pei_pai_dong, pei_pai_nan, pei_pai_xi, pei_pai_bei, self.rest_pai = \
-            self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
+        (
+            pei_pai_dong,
+            pei_pai_nan,
+            pei_pai_xi,
+            pei_pai_bei,
+            self.rest_pai,
+        ) = self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
 
         self.pei_pai_dong = PeiPai(initial_pei_pai=pei_pai_dong)
         self.pei_pai_nan = PeiPai(initial_pei_pai=pei_pai_nan)
@@ -89,16 +104,17 @@ class Ju:
         zhuang_list = Ju.create_zhuang()
         bi_pai_list = []
         for t in range(0, len(zhuang_list), 17):
-            bi_pai_list.append(BiPai(zhuang_list=zhuang_list[t:t+17]))
+            bi_pai_list.append(BiPai(zhuang_list=zhuang_list[t : t + 17]))
         return bi_pai_list
 
     @staticmethod
     def get_wang_pai_and_fixed_bi_pai(
-            dice_sum: int,
-            bi_pai_dong: List[Zhuang],
-            bi_pai_nan: List[Zhuang],
-            bi_pai_xi: List[Zhuang],
-            bi_pai_bei: List[Zhuang]) -> (List[Zhuang], List[Zhuang]):
+        dice_sum: int,
+        bi_pai_dong: List[Zhuang],
+        bi_pai_nan: List[Zhuang],
+        bi_pai_xi: List[Zhuang],
+        bi_pai_bei: List[Zhuang],
+    ) -> (List[Zhuang], List[Zhuang]):
         fixed_bi_pai: List[Zhuang] = []
 
         if dice_sum in [5, 9]:
@@ -130,7 +146,8 @@ class Ju:
 
     @staticmethod
     def get_initial_pei_pai_and_rest_pai(
-            fixed_bi_pai: List[Zhuang]) -> (List[Pai], List[Pai], List[Pai], List[Pai], List[Pai]):
+        fixed_bi_pai: List[Zhuang],
+    ) -> (List[Pai], List[Pai], List[Pai], List[Pai], List[Pai]):
         """
 
         Args:

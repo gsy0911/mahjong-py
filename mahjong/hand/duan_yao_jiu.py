@@ -4,7 +4,6 @@ from mahjong.pai import Pai
 
 
 class DuanYaoJiu(Hand):
-
     def __init__(self, pei_pai: List[Pai]):
         super().__init__(hand_name="断么九", pei_pai=pei_pai)
 

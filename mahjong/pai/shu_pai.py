@@ -6,7 +6,6 @@ from .pai import Pai, PaiEnum
 
 
 class ShuPai(Pai):
-
     def __init__(self, number: int):
         super().__init__(pai_enum=PaiEnum.SHU_PAI)
         self.number = number

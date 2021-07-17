@@ -41,7 +41,6 @@ class SanYuanPaiEnum(Enum):
 
 
 class Pai:
-
     def __init__(self, pai_enum: PaiEnum):
         self.pai_enum = pai_enum
         self.priority = 0
