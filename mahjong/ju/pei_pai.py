@@ -14,9 +14,7 @@ class PeiPai:
         self.pei_pai: List[Pai] = initial_pei_pai
 
     def __str__(self):
-        return "|".join(
-            [str(pai) for pai in sorted(self.pei_pai, key=lambda pai: pai.priority)]
-        )
+        return "|".join([str(pai) for pai in sorted(self.pei_pai, key=lambda pai: pai.priority)])
 
     @staticmethod
     def of(

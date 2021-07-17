@@ -31,6 +31,4 @@ class BiPai:
         self.zhuang_list = zhuang_list
 
     def __str__(self):
-        return "\n".join(
-            [f"- {idx+1}: {str(zhuang)}" for idx, zhuang in enumerate(self.zhuang_list)]
-        )
+        return "\n".join([f"- {idx+1}: {str(zhuang)}" for idx, zhuang in enumerate(self.zhuang_list)])

@@ -24,3 +24,8 @@ wheel: clean ## generate wheel ## make wheel
 .PHONY: clean
 clean: ## remove all files in dist ## make clean
 	rm -f -r mahjong.egg-info/* dist/* -y
+
+
+.PHONY: format
+format: ## format with black ## make format
+	black mahjong --line-length 120
