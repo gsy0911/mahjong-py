@@ -6,6 +6,7 @@ authors = ["gsy0911 <yoshiki0911@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+black = "^21.7b0"
 
 [tool.poetry.dev-dependencies]
 jupyterlab = "^2.1.1"
