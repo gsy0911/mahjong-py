@@ -1,18 +1,14 @@
-# Breaking Changes ?
-
-- [ ] Yes
-- [ ] No
-
 # Pull Request Type
 
-- [ ] Feature
+- [x] Feature
 - [ ] BugFix
+- [ ] HotFix
 - [ ] Code style update (formatting, local variables)
 - [ ] Refactoring (no functional changes)
 - [ ] Documentation content changes
-- [ ] Not Above describe: {here}
+- [ ] Other describe: {here}
 
-# Done
+## Done
 
 target issue: #{No} 
 
@@ -20,7 +16,35 @@ target issue: #{No}
     - done ...
 
 
-# Remaining Issue
+## Remaining Issue
 
 - something to do
-    - issue: #{No}
+    - may resolve in issue: #{No}
+
+
+# Breaking Changes ?
+
+- [x] Yes
+- [ ] No
+
+## User can
+
+description for breaking changes
+
+- do this1
+- do this2
+
+## User cannot
+
+description for breaking changes
+
+- do this1
+- do this2
+
+# Confirmation
+
+- how to confirm the thing you develop
+
+# Other
+
+- if something
