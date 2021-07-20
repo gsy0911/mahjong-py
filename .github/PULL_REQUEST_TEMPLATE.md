@@ -1,6 +1,5 @@
 ---
 name: feature pull request
-about: use this template for newly adding feature
 title: feature-name
 labels: feature
 ---
