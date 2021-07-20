@@ -8,7 +8,7 @@ labels: feature
 
 # Done
 
-issue: #{No} 
+target issue: #{No} 
 
 - short description
     - done ...
