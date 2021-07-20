@@ -1,10 +1,16 @@
----
-name: feature pull request
-about: use this template for newly adding feature
-title: feature-name
-labels: feature
----
+# Breaking Changes ?
 
+- [ ] Yes
+- [ ] No
+
+# Pull Request Type
+
+- [ ] Feature
+- [ ] BugFix
+- [ ] Code style update (formatting, local variables)
+- [ ] Refactoring (no functional changes)
+- [ ] Documentation content changes
+- [ ] Not Above describe: {here}
 
 # Done
 
