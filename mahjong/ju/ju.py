@@ -1,6 +1,7 @@
 """
 局: ju
 """
+from dataclasses import dataclass, field
 import random
 from typing import List, Optional
 
@@ -18,6 +19,7 @@ from .bi_pai import Zhuang, BiPai
 from .pei_pai import PeiPai
 
 
+@dataclass(frozen=True)
 class Ju:
     """
     Placement:
@@ -39,24 +41,75 @@ class Ju:
     [4,8,12]         [2,6,10]
              [5,9]
     """
+    dice_sum: int
 
-    def __init__(self, dice_sum: Optional[int] = None):
-        bi_bai_list = self.create_bi_pai()
-        # 壁牌: bi_pai
-        self.bi_pai_dong = bi_bai_list[0].zhuang_list
-        self.bi_pai_nan = bi_bai_list[1].zhuang_list
-        self.bi_pai_xi = bi_bai_list[2].zhuang_list
-        self.bi_pai_bei = bi_bai_list[3].zhuang_list
+    bi_pai_dong: List[Zhuang] = field(repr=False)
+    bi_pai_nan: List[Zhuang] = field(repr=False)
+    bi_pai_xi: List[Zhuang] = field(repr=False)
+    bi_pai_bei: List[Zhuang] = field(repr=False)
+
+    # 王牌: wang_pai
+    wang_pai: List[Zhuang]
+    fixed_bi_pai: List[Zhuang]
+
+    rest_pai: List[Pai] = field(repr=False)
+
+    pei_pai_dong: PeiPai
+    pei_pai_nan: PeiPai
+    pei_pai_xi: PeiPai
+    pei_pai_bei: PeiPai
+
+    # def __init__(self, dice_sum: Optional[int] = None):
+    #     # bi_bai_list = self.create_bi_pai()
+    #     # # 壁牌: bi_pai
+    #     # self.bi_pai_dong = bi_bai_list[0].zhuang_list
+    #     # self.bi_pai_nan = bi_bai_list[1].zhuang_list
+    #     # self.bi_pai_xi = bi_bai_list[2].zhuang_list
+    #     # self.bi_pai_bei = bi_bai_list[3].zhuang_list
+    #     #
+    #     # if dice_sum is None:
+    #     #     dice_sum = 8
+    #     #
+    #     # self.wang_pai, self.fixed_bi_pai = self.get_wang_pai_and_fixed_bi_pai(
+    #     #     dice_sum=dice_sum,
+    #     #     bi_pai_dong=self.bi_pai_dong,
+    #     #     bi_pai_nan=self.bi_pai_nan,
+    #     #     bi_pai_xi=self.bi_pai_xi,
+    #     #     bi_pai_bei=self.bi_pai_bei,
+    #     # )
+    #
+    #     # 配牌: pei pai
+    #     (
+    #         pei_pai_dong,
+    #         pei_pai_nan,
+    #         pei_pai_xi,
+    #         pei_pai_bei,
+    #         self.rest_pai,
+    #     ) = self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
+    #
+    #     self.pei_pai_dong = PeiPai(initial_pei_pai=pei_pai_dong)
+    #     self.pei_pai_nan = PeiPai(initial_pei_pai=pei_pai_nan)
+    #     self.pei_pai_xi = PeiPai(initial_pei_pai=pei_pai_xi)
+    #     self.pei_pai_bei = PeiPai(initial_pei_pai=pei_pai_bei)
+
+    @staticmethod
+    def of(dice_sum: Optional[int] = None) -> "Ju":
+        bi_bai_list = Ju.create_bi_pai()
+
+        bi_pai_dong = bi_bai_list[0].zhuang_list
+        bi_pai_nan = bi_bai_list[1].zhuang_list
+        bi_pai_xi = bi_bai_list[2].zhuang_list
+        bi_pai_bei = bi_bai_list[3].zhuang_list
 
         if dice_sum is None:
             dice_sum = 8
         # 王牌: wang_pai
-        self.wang_pai, self.fixed_bi_pai = self.get_wang_pai_and_fixed_bi_pai(
+        wang_pai, fixed_bi_pai = Ju.get_wang_pai_and_fixed_bi_pai(
             dice_sum=dice_sum,
-            bi_pai_dong=self.bi_pai_dong,
-            bi_pai_nan=self.bi_pai_nan,
-            bi_pai_xi=self.bi_pai_xi,
-            bi_pai_bei=self.bi_pai_bei,
+            bi_pai_dong=bi_pai_dong,
+            bi_pai_nan=bi_pai_nan,
+            bi_pai_xi=bi_pai_xi,
+            bi_pai_bei=bi_pai_bei,
         )
 
         # 配牌: pei pai
@@ -65,28 +118,42 @@ class Ju:
             pei_pai_nan,
             pei_pai_xi,
             pei_pai_bei,
-            self.rest_pai,
-        ) = self.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=self.fixed_bi_pai)
+            rest_pai,
+        ) = Ju.get_initial_pei_pai_and_rest_pai(fixed_bi_pai=fixed_bi_pai)
 
-        self.pei_pai_dong = PeiPai(initial_pei_pai=pei_pai_dong)
-        self.pei_pai_nan = PeiPai(initial_pei_pai=pei_pai_nan)
-        self.pei_pai_xi = PeiPai(initial_pei_pai=pei_pai_xi)
-        self.pei_pai_bei = PeiPai(initial_pei_pai=pei_pai_bei)
+        pei_pai_dong = PeiPai(pei_pai=pei_pai_dong)
+        pei_pai_nan = PeiPai(pei_pai=pei_pai_nan)
+        pei_pai_xi = PeiPai(pei_pai=pei_pai_xi)
+        pei_pai_bei = PeiPai(pei_pai=pei_pai_bei)
+        return Ju(
+            dice_sum=dice_sum,
+            bi_pai_dong=bi_pai_dong,
+            bi_pai_nan=bi_pai_nan,
+            bi_pai_xi=bi_pai_xi,
+            bi_pai_bei=bi_pai_bei,
+            rest_pai=rest_pai,
+            wang_pai=wang_pai,
+            fixed_bi_pai=fixed_bi_pai,
+            pei_pai_dong=pei_pai_dong,
+            pei_pai_nan=pei_pai_nan,
+            pei_pai_xi=pei_pai_xi,
+            pei_pai_bei=pei_pai_bei
+        )
 
     @staticmethod
     def xi_pai() -> List[Pai]:
         all_pai = []
         for _ in range(4):
             for i in range(1, 10):
-                all_pai.append(WanZi(i))
-                all_pai.append(SuoZi(i))
-                all_pai.append(TongZi(i))
+                all_pai.append(WanZi.of(i))
+                all_pai.append(SuoZi.of(i))
+                all_pai.append(TongZi.of(i))
 
-            for feng_pai in FengPaiEnum:
-                all_pai.append(FengPai(feng_pai))
+            for feng_pai in FengPaiEnum.chars():
+                all_pai.append(FengPai.of(feng_pai))
 
-            for san_yuan_pai in SanYuanPaiEnum:
-                all_pai.append(SanYuanPai(san_yuan_pai))
+            for san_yuan_pai in SanYuanPaiEnum.chars():
+                all_pai.append(SanYuanPai.of(san_yuan_pai))
 
         return random.sample(all_pai, len(all_pai))
 

@@ -31,6 +31,10 @@ class FengPaiEnum(Enum):
     # 北
     BEI = "北"
 
+    @staticmethod
+    def chars() -> List[str]:
+        return ["d", "n", "x", "b"]
+
 
 class SanYuanPaiEnum(Enum):
     # 白板
@@ -39,6 +43,10 @@ class SanYuanPaiEnum(Enum):
     LU_FA = "發"
     # 紅中
     HONG_ZHONG = "中"
+
+    @staticmethod
+    def chars() -> List[str]:
+        return ["b", "f", "z"]
 
 
 @dataclass(frozen=True)
