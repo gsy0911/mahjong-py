@@ -1,6 +1,6 @@
 from .hand import Hand
 from typing import List
-from mahjong.pai import Pai
+from mahjong.domain.pai import Pai
 
 
 class DuanYaoJiu(Hand):

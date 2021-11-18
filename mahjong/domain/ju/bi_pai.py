@@ -4,7 +4,7 @@
 """
 from dataclasses import dataclass
 from typing import List
-from mahjong.pai import Pai
+from mahjong.domain.pai import Pai
 
 
 @dataclass(frozen=True)
@@ -12,6 +12,7 @@ class Zhuang:
     """
     幢
     """
+
     upper_pai: Pai
     lower_pai: Pai
 
@@ -27,6 +28,7 @@ class BiPai:
     """
     壁牌
     """
+
     zhuang_list: List[Zhuang]
 
     def __str__(self):

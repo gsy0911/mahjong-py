@@ -3,7 +3,7 @@
 """
 from typing import List, Optional
 from dataclasses import dataclass
-from mahjong.pai import Pai, WanZi, TongZi, SuoZi, FengPai, SanYuanPai
+from mahjong.domain.pai import Pai, WanZi, TongZi, SuoZi, FengPai, SanYuanPai
 
 
 @dataclass(frozen=True)
@@ -11,6 +11,7 @@ class PeiPai:
     """
     配牌: pei pai
     """
+
     pei_pai: List[Pai]
 
     def __str__(self):

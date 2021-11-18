@@ -2,7 +2,7 @@
 面子: mian_zi
 """
 from typing import List
-from mahjong.pai import Pai
+from mahjong.domain.pai import Pai
 
 
 class MianZi:

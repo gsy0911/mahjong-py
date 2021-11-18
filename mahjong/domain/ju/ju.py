@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 import random
 from typing import List, Optional
 
-from mahjong.pai import (
+from mahjong.domain.pai import (
     Pai,
     WanZi,
     SuoZi,
@@ -41,6 +41,7 @@ class Ju:
     [4,8,12]         [2,6,10]
              [5,9]
     """
+
     dice_sum: int
 
     bi_pai_dong: List[Zhuang] = field(repr=False)
@@ -137,7 +138,7 @@ class Ju:
             pei_pai_dong=pei_pai_dong,
             pei_pai_nan=pei_pai_nan,
             pei_pai_xi=pei_pai_xi,
-            pei_pai_bei=pei_pai_bei
+            pei_pai_bei=pei_pai_bei,
         )
 
     @staticmethod
