@@ -2,9 +2,10 @@
 牌: pai
 """
 
-from abc import abstractmethod
+from abc import ABCMeta, abstractmethod
+from dataclasses import dataclass
 from enum import Enum, auto
-from typing import List
+from typing import List, Union
 
 
 class PaiEnum(Enum):
@@ -40,10 +41,10 @@ class SanYuanPaiEnum(Enum):
     HONG_ZHONG = "中"
 
 
-class Pai:
-    def __init__(self, pai_enum: PaiEnum):
-        self.pai_enum = pai_enum
-        self.priority = 0
+@dataclass(frozen=True)
+class Pai(metaclass=ABCMeta):
+    pai_enum: PaiEnum
+    priority: int
 
     @abstractmethod
     def get_character(self) -> List[str]:
@@ -51,8 +52,13 @@ class Pai:
 
     @staticmethod
     @abstractmethod
-    def of(inputs: str):
-        raise NotImplementedError
+    def of(s: Union[str, int]) -> "Pai":
+        raise NotImplementedError()
+
+    @staticmethod
+    @abstractmethod
+    def list_of(inputs: str) -> List["Pai"]:
+        raise NotImplementedError()
 
     def __str__(self):
         return "".join(self.get_character())
