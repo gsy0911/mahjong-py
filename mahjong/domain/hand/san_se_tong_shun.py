@@ -5,11 +5,11 @@ from .hand import Hand
 
 
 @dataclass(frozen=True)
-class DuanYaoJiu(Hand):
+class SanSeTongShun(Hand):
 
     @staticmethod
     def of(pei_pai: List[Pai]):
-        return DuanYaoJiu(hand_name="断么九", pei_pai=pei_pai)
+        return SanSeTongShun(hand_name="三色同順", pei_pai=pei_pai)
 
     def _hu_le_condition(self) -> bool:
         for p in self.pei_pai:
