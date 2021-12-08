@@ -1,11 +1,15 @@
-from .hand import Hand
+from dataclasses import dataclass
 from typing import List
-from mahjong.pai import Pai
+from mahjong.domain.pai import Pai
+from .hand import Hand
 
 
+@dataclass(frozen=True)
 class DuanYaoJiu(Hand):
-    def __init__(self, pei_pai: List[Pai]):
-        super().__init__(hand_name="断么九", pei_pai=pei_pai)
+
+    @staticmethod
+    def of(pei_pai: List[Pai]):
+        return DuanYaoJiu(hand_name="断么九", pei_pai=pei_pai)
 
     def _hu_le_condition(self) -> bool:
         for p in self.pei_pai:
