@@ -1,9 +1,10 @@
 """
 配牌: pei pai
 """
-from typing import List, Optional
 from dataclasses import dataclass
-from mahjong.domain.pai import Pai, WanZi, TongZi, SuoZi, FengPai, SanYuanPai
+from typing import List, Optional
+
+from mahjong.domain.pai import FengPai, Pai, SanYuanPai, SuoZi, TongZi, WanZi
 
 
 @dataclass(frozen=True)

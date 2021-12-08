@@ -3,7 +3,8 @@
 """
 from dataclasses import dataclass
 from typing import List, Union
-from .pai import Pai, PaiEnum, ZiPaiEnum, FengPaiEnum, SanYuanPaiEnum
+
+from .pai import FengPaiEnum, Pai, PaiEnum, SanYuanPaiEnum, ZiPaiEnum
 
 
 @dataclass(frozen=True)
@@ -36,7 +37,7 @@ class FengPai(ZiPai):
         return [self.feng_pai_enum.value]
 
     @staticmethod
-    def of(s: str) -> Pai:
+    def of(s: Union[str, int]) -> Pai:
         if s == "d":
             priority = 50
             feng_pai_enum = FengPaiEnum.DONG

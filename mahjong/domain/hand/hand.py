@@ -4,6 +4,7 @@
 from abc import ABCMeta, abstractmethod
 from dataclasses import dataclass
 from typing import List
+
 from mahjong.domain.pai import Pai
 
 

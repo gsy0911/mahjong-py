@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from typing import List
+
 from mahjong.domain.pai import Pai
+
 from .hand import Hand
 
 
 @dataclass(frozen=True)
 class SanSeTongShun(Hand):
-
     @staticmethod
     def of(pei_pai: List[Pai]):
         return SanSeTongShun(hand_name="三色同順", pei_pai=pei_pai)

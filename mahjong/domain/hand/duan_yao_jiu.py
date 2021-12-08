@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from typing import List
+
 from mahjong.domain.pai import Pai
+
 from .hand import Hand
 
 
 @dataclass(frozen=True)
 class DuanYaoJiu(Hand):
-
     @staticmethod
     def of(pei_pai: List[Pai]):
         return DuanYaoJiu(hand_name="断么九", pei_pai=pei_pai)

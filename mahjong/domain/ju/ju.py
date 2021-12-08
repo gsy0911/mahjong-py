@@ -1,21 +1,13 @@
 """
 局: ju
 """
-from dataclasses import dataclass, field
 import random
-from typing import List, Optional
+from dataclasses import dataclass, field
+from typing import List, Optional, Tuple
 
-from mahjong.domain.pai import (
-    Pai,
-    WanZi,
-    SuoZi,
-    TongZi,
-    FengPai,
-    SanYuanPai,
-    FengPaiEnum,
-    SanYuanPaiEnum,
-)
-from .bi_pai import Zhuang, BiPai
+from mahjong.domain.pai import FengPai, FengPaiEnum, Pai, SanYuanPai, SanYuanPaiEnum, SuoZi, TongZi, WanZi
+
+from .bi_pai import BiPai, Zhuang
 from .pei_pai import PeiPai
 
 
@@ -182,7 +174,7 @@ class Ju:
         bi_pai_nan: List[Zhuang],
         bi_pai_xi: List[Zhuang],
         bi_pai_bei: List[Zhuang],
-    ) -> (List[Zhuang], List[Zhuang]):
+    ) -> Tuple[List[Zhuang], List[Zhuang]]:
         fixed_bi_pai: List[Zhuang] = []
 
         if dice_sum in [5, 9]:
@@ -215,7 +207,7 @@ class Ju:
     @staticmethod
     def get_initial_pei_pai_and_rest_pai(
         fixed_bi_pai: List[Zhuang],
-    ) -> (List[Pai], List[Pai], List[Pai], List[Pai], List[Pai]):
+    ) -> Tuple[List[Pai], List[Pai], List[Pai], List[Pai], List[Pai]]:
         """
 
         Args:

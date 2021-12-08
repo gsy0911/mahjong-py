@@ -4,6 +4,7 @@
 
 from dataclasses import dataclass
 from typing import List, Union
+
 from .pai import Pai, PaiEnum
 
 

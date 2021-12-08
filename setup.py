@@ -3,22 +3,18 @@ import os
 
 
 def get_version(init_file_path):
-    version_line = list(
-        filter(lambda l: l.startswith('VERSION'), open(init_file_path))
-    )[0]
+    version_line = list(filter(lambda l: l.startswith("VERSION"), open(init_file_path)))[0]
 
     # eval is required to convert from string to tuple,
     # because VERSION defined in __init__.py is tuple
-    version_tuple = eval(version_line.split('=')[-1])
+    version_tuple = eval(version_line.split("=")[-1])
 
     # join with dot
     return ".".join(map(str, version_tuple))
 
 
 # get __version__ from __init__.py
-init = os.path.join(
-    os.path.dirname(__file__), 'mahjong', '__init__.py'
-)
+init = os.path.join(os.path.dirname(__file__), "mahjong", "__init__.py")
 VERSION = get_version(init_file_path=init)
 
 with open("README.md", "r") as fh:
@@ -35,9 +31,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/gsy0911/mahjong-py",
     packages=setuptools.find_packages(),
-    install_requires=[
-        ""
-    ],
+    install_requires=[""],
     license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -46,8 +40,8 @@ setuptools.setup(
         "Development Status :: 3 - Alpha",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License"
+        "License :: OSI Approved :: MIT License",
     ],
-    python_requires='>=3.6',
-    keywords=["keyword", "here"]
+    python_requires=">=3.6",
+    keywords=["keyword", "here"],
 )
