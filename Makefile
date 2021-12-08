@@ -28,4 +28,7 @@ clean: ## remove all files in dist ## make clean
 
 .PHONY: format
 format: ## format with black ## make format
-	black mahjong --line-length 120
+	isort mahjong
+	isort test
+	black .
+	mypy mahjong
